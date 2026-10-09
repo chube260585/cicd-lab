@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicd-lab
+spec:
+  selector:
+    app: cicd-lab
+  ports:
+    - port: 80
+      targetPort: 3000

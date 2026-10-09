@@ -45,3 +45,19 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  manifiesto:
+    needs: imagen
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Actualiza la etiqueta de la imagen
+        run: |
+          IMAGEN="ghcr.io/${GITHUB_REPOSITORY,,}:${GITHUB_SHA}"
+          sed -i "s|image: ghcr.io/.*|image: ${IMAGEN}|" k8s/deployment.yaml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Despliega ${GITHUB_SHA::7} [skip ci]"
+          git push

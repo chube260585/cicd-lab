@@ -1,7 +1,7 @@
 const http = require('node:http');
 
 function saludo(nombre = 'mundo') {
-  return `Adios, ${nombre}!`;
+  return `Hola, ${nombre}!`;
 }
 
 function crearServidor() {

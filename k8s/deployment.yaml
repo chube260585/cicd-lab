@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/chube260585/cicd-lab:latest
+          image: ghcr.io/chube260585/cicd-lab:816a4e0832ffc6ebbafb7830d2a3635d1bbecb55
           ports:
             - containerPort: 3000
           readinessProbe:
